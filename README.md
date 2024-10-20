@@ -86,7 +86,7 @@ A script designed to install services on various Linux distributions (Debian/Ubu
 
 ## License
 
-This repository is licensed under the MIT License. Feel free to use and modify the scripts to suit your needs.
+This repository is licensed under the [MIT License](https://github.com/iemafzalhassan/Shell_Script_Projects/blob/main/LICENSE). Feel free to use and modify the scripts to suit your needs.
 
 ---
 
