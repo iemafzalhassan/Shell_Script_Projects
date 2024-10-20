@@ -1,6 +1,35 @@
 #!/bin/bash
 
-# Set the threshold for disk usage
+
+# Author: Md Afzal Hassan Ehsaani
+
+# Function to display a disk usage-themed banner with ASCII art
+
+show_banner() {
+    clear  # Clear the terminal screen for a clean output
+    echo "******************************************"
+    echo "|        ██╗   ██╗███████╗███████╗       |"
+    echo "|        ██║   ██║██╔════╝██╔════╝       |"
+    echo "|        ██║   ██║█████╗  █████╗         |"
+    echo "|        ██║   ██║██╔══╝  ██╔══╝         |"
+    echo "|        ╚██████╔╝███████╗███████╗       |"
+    echo "|         ╚═════╝ ╚══════╝╚══════╝       |"
+    echo "******************************************"
+    echo "|    D I S K   U S A G E   M O N I T O R  |"
+    echo "******************************************"
+    echo "|  Author: Md Afzal Hassan Ehsaani        |"
+    echo "|----------------------------------------|"
+    echo "|  Checking disk usage and alerting      |"
+    echo "|  when usage exceeds the set threshold  |"
+    echo "******************************************"
+}
+
+# Display the banner
+
+show_banner
+
+sleep 3  # Pause for 3 seconds for effect
+
 
 THRESHOLD=80
 
@@ -22,10 +51,19 @@ df -H | grep -vE '^Filesystem|tmpfs|cdrom' | awk '{ print $5 " " $1 }' | while r
     partition=$(echo "$output" | awk '{ print $2 }')
 
     if [ "$usage" -ge "$THRESHOLD" ]; then
-        echo "Warning: Disk usage on $partition is at ${usage}%"
+        echo ""
+        echo "******************************************"
+        echo "|        ALERT: High Disk Usage!         |"
+        echo "|    Partition: $partition               |"
+        echo "|    Usage: ${usage}%                    |"
+        echo "|    Take action: Scale or clean space   |"
+        echo "******************************************"
+        echo ""
+        sleep 2  # Pause for readability
+
         log_message "Warning: Disk usage on $partition is at ${usage}%"
     else
-        echo "Disk usage on $partition is under control: ${usage}%"
+        echo "Disk usage on $partition  is healthy at: ${usage}%"
     fi
 done
 
